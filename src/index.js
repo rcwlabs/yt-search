@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ReactDOM from 'react-dom';
-import YT_Search from 'youtube-api-search';
+import YTSearch from 'youtube-api-search';
 
 import config from '../config';
 
@@ -10,12 +10,23 @@ import Searchbar from './components/Searchbar';
 const YT_API_KEY = config.YT_API_KEY;
 
 export default class App extends Component {
+
+    constructor(props) {
+        super(props);
+
+        this.state = { videos: [] };
+
+        YTSearch({key: YT_API_KEY, term: 'kitty'}, (videos) => {
+            this.setState({ videos });
+            console.log(videos)
+        });
+    }
+
     render() {
         return(
             <div>
-                <div>Hello there my friend</div>
                 <Searchbar />
-                <VideoList />
+                <VideoList videos={this.state.videos} />
             </div>
         );
     }
