@@ -13,8 +13,10 @@ export default class Searchbar extends Component {
     render() {
         return(
             <div>
-                <input onChange={ e => this.setState({term: e.target.value}) } />
-                Value of term: {this.state.term}
+                <input 
+                value={this.state.term}
+                onChange={ e => this.setState({term: e.target.value}) } 
+                />
             </div>
         );
     }
